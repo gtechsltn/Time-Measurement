@@ -1,14 +1,11 @@
 # Time Measurement
-
-https://github.com/gtechsltn/Time-Measurement (ChatGPT & Gemeni)
-
-https://github.com/gtechsltn/TimeLogger (NTQ Solution)
-
 * Stopwatch
 * TimeLogger
 * TimeMeasurer
 * Stopwatcher
 * OneTimeStopwatch
+* [TimeLogger (ChatGPT & Gemeni)](https://github.com/gtechsltn/Time-Measurement)
+* [TimeLogger (NTQ Solution)](https://github.com/gtechsltn/TimeLogger)
 
 # TimeLogger.cs (NTQ Solution)
 ```
