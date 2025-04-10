@@ -1,4 +1,26 @@
 # Time Measurement
+
+## For methods that return T (Before):
+```
+MsgFileName = LegalizeFilenameForNAS(MsgFileName, hasExtension: false);
+```
+
+## For methods that return T (After):
+```
+MsgFileName = TimeLogger.MeasureExecutionTime(() => { return LegalizeFilenameForNAS(MsgFileName, hasExtension: false); }, nameof(LegalizeFilenameForNAS));
+```
+
+## For void methods (Before):
+```
+FolderUtil.CreateFolderIfNotExists(iMailID_Directory);
+```
+
+## For void methods (After):
+```
+TimeLogger.MeasureExecutionTime(() => { FolderUtil.CreateFolderIfNotExists(iMailID_Directory); }, nameof(FolderUtil.CreateFolderIfNotExists));
+```
+
+# Time Measurement
 ```
 using System;
 using System.Diagnostics;
