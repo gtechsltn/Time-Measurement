@@ -41,6 +41,21 @@ public static class TimeLogger
             Console.WriteLine($"Time elapsed in {methodName}: {stopwatch.ElapsedMilliseconds} ms");
         }
     }
+
+    public static T MeasureExecutionTime<T>(Func<T> func, string methodName)
+    {
+        var stopwatch = Stopwatch.StartNew();
+
+        try
+        {
+            return func();
+        }
+        finally
+        {
+            stopwatch.Stop();
+            Console.WriteLine($"Time elapsed in {methodName}: {stopwatch.ElapsedMilliseconds} ms");
+        }
+    }
 }
 ```
 
