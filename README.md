@@ -80,7 +80,32 @@ public class MyService
             Console.WriteLine("Executing MethodB...");
         }, nameof(MethodB));
     }
+
+    public int GetNumber()
+    {
+        return TimeLogger.MeasureExecutionTime(() =>
+        {
+            // Simulate some work
+            Thread.Sleep(200);
+            return 123; // returning int
+        }, nameof(GetNumber));
+    }
+
+    public string GetData()
+    {
+        return TimeLogger.MeasureExecutionTime(() =>
+        {
+            // Simulate some work
+            Thread.Sleep(500);
+            return "Hello World"; // returning string
+        }, nameof(GetData));
+    }
 }
+
+```
+
+# Using an Interceptor (AOP-like Approach with Attributes):
+```
 ```
 
 ## ASP.NET Core API Action Filter:
