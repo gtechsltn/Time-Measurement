@@ -106,6 +106,108 @@ public class MyService
 
 # Using an Interceptor (AOP-like Approach with Attributes):
 ```
+using System;
+using System.Diagnostics;
+using System.Reflection;
+
+// Custom attribute to mark methods for timing
+[AttributeUsage(AttributeTargets.Method)]
+public class TimedAttribute : Attribute
+{
+}
+
+public class MyClass
+{
+    [Timed]
+    public void Method1()
+    {
+        Console.WriteLine("Executing Method1...");
+        System.Threading.Thread.Sleep(150);
+    }
+
+    [Timed]
+    public int Method2(int x)
+    {
+        Console.WriteLine($"Executing Method2 with input: {x}");
+        System.Threading.Thread.Sleep(250);
+        return x * 2;
+    }
+
+    public void UntimedMethod()
+    {
+        Console.WriteLine("Executing UntimedMethod...");
+        System.Threading.Thread.Sleep(50);
+    }
+
+    public static void Main(string[] args)
+    {
+        MyClass obj = new MyClass();
+        MeasureMethodExecution(obj, "Method1");
+        MeasureMethodExecution(obj, "Method2", 5);
+        obj.UntimedMethod();
+    }
+
+    public static void MeasureMethodExecution(object instance, string methodName, params object[] args)
+    {
+        MethodInfo methodInfo = instance.GetType().GetMethod(methodName);
+        if (methodInfo != null && methodInfo.GetCustomAttribute<TimedAttribute>() != null)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            methodInfo.Invoke(instance, args);
+            stopwatch.Stop();
+            Console.WriteLine($"Method '{methodName}' executed in {stopwatch.ElapsedMilliseconds} ms");
+        }
+        else if (methodInfo != null)
+        {
+            methodInfo.Invoke(instance, args);
+        }
+        else
+        {
+            Console.WriteLine($"Method '{methodName}' not found.");
+        }
+    }
+}
+```
+
+# Example with Serilog (requires installing the Serilog.Timings package):
+```
+using Serilog;
+using SerilogTimings;
+using System.Threading;
+
+public class MyClass
+{
+    public void Method1()
+    {
+        using (Operation.Time("Executing Method1"))
+        {
+            Thread.Sleep(120);
+            Log.Information("Method1 completed some work.");
+        }
+    }
+
+    public int Method2(int x)
+    {
+        using (Operation.Time("Executing Method2 with input {Input}", x))
+        {
+            Thread.Sleep(230);
+            Log.Information("Method2 returned {Result}", x * 2);
+            return x * 2;
+        }
+    }
+
+    public static void Main(string[] args)
+    {
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .MinimumLevel.Information()
+            .CreateLogger();
+
+        MyClass obj = new MyClass();
+        obj.Method1();
+        obj.Method2(10);
+    }
+}
 ```
 
 ## ASP.NET Core API Action Filter:
