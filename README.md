@@ -1,5 +1,32 @@
 # Time Measurement
 
+https://github.com/gtechsltn/Time-Measurement (ChatGPT & Gemeni)
+
+https://github.com/gtechsltn/TimeLogger (NTQ Solution)
+
+* Stopwatch
+* TimeLogger
+* TimeMeasurer
+* Stopwatcher
+* OneTimeStopwatch
+
+# TimeLogger.cs (NTQ Solution)
+```
+MyNamespace.TimeLogger.Init("Api_Name_That_Need_To_Improve_Performance");
+
+MyNamespace.TimeLogger.Start("Programming_code_title_1");
+MyNamespace.TimeLogger.Stop("Programming_code_title_1");
+
+MyNamespace.TimeLogger.Start("Programming_code_title_2");
+MyNamespace.TimeLogger.Stop("Programming_code_title_2");
+...
+MyNamespace.TimeLogger.Start("Programming_code_title_3");
+MyNamespace.TimeLogger.Stop("Programming_code_title_3");
+
+MyNamespace.TimeLogger.Summary();
+```
+
+# TimeLogger.cs (ChatGPT & Gemeni)
 ## For methods that return T (Before):
 ```
 MsgFileName = LegalizeFilenameForNAS(MsgFileName, hasExtension: false);
