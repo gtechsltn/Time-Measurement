@@ -7,6 +7,49 @@
 * [TimeLogger (ChatGPT & Gemeni)](https://github.com/gtechsltn/Time-Measurement)
 * [TimeLogger (NTQ Solution)](https://github.com/gtechsltn/TimeLogger)
 
+# Time Format 01
+```
+class Program
+{
+    static void Main(string[] args)
+    {
+        System.Diagnostics.Stopwatch sw = null;
+        try
+        {
+            sw = System.Diagnostics.Stopwatch.StartNew();
+            //... TODO: HERE
+        }
+        finally
+        {
+            sw.Stop();
+            System.Diagnostics.Debug.Write(string.Format("Elapsed Time: {0:hh\\:mm\\:ss\\.fff}", sw.Elapsed));
+        }
+    }
+}
+```
+
+# Time Format 02
+```
+class Program
+{
+    static void Main(string[] args)
+    {
+        const string TimeElapsedFormat = "Time elapsed in {0}: {1} ms.";
+        System.Diagnostics.Stopwatch sw_UsingMsgNative = null;
+        try
+        {
+            sw_UsingMsgNative = System.Diagnostics.Stopwatch.StartNew();
+            //... TODO: HERE
+        }
+        finally
+        {
+            sw_UsingMsgNative.Stop();
+            System.Diagnostics.Debug.Write(string.Format(TimeElapsedFormat, "ReviveMsgAttBagit → Using MsgNative", sw_UsingMsgNative.ElapsedMilliseconds));
+        }
+    }
+}
+```
+
 # TimeLogger.cs (NTQ Solution)
 ```
 MyNamespace.TimeLogger.Init("Api_Name_That_Need_To_Improve_Performance");
