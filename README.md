@@ -1,4 +1,7 @@
 # Time Measurement
+* https://github.com/gtechsltn/TimeLogger
+* https://github.com/gtechsltn/TimeLogging
+* https://github.com/gtechsltn/Time-Measurement
 * Stopwatch
 * TimeLogger
 * TimeMeasurer
